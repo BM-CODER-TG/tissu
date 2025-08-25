@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Monsieur+La+Doulaise&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+     font-family: "Poppins", sans-serif;
+     margin: 0;
+     padding: 0;
+}
+
+body {
+    background-color: #fef0d3;
+    padding: 0 15%;
+    height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #81522e;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+a {
+    text-decoration: none;
+    font-size: 15px;
+}
+.logo {
+    font-weight: bold;
+    font-size: 25px;
+    color: 81522e;
+}
+.menu a {
+    color: black;
+
+}
+.menu a:hover {
+    color: rgb(255, 0, 0);
+    transition: 0.5s;
+
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 40px;
+}
+.btn {
+    padding: 8px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #81522e;
+    color: white;
+    transition: 0.5s;
+    box-shadow: 0 0 20px black;
+}
+.home {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+.image {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.image img {
+    width: 20%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px black;
+    transition: 0.5s;
+    height: 350px;
+    object-fit: cover;
+    
+
+}
+.image img:hover {
+    width: 30%;
+    cursor: pointer;
+}
+.image2 {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.image2 img {
+    width: 20%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px black;
+    transition: 0.5s;
+    height: 350px;
+    object-fit: cover;
+    
+
+}
+.image2 img:hover {
+    width: 30%;
+    cursor: pointer;
+}
+
+.product-card {
+  width: 220px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  position: relative;
+  background-color: #fff;
+  padding: 15px;
+  margin: 20px;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: orange;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.product-title {
+  font-size: 16px;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.add-to-cart {
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.add-to-cart:hover {
+  background-color: #333;
+}
