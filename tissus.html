@@ -1,623 +1,210 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfriTissus - Vente de Tissus, Coupons & Bazins</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background-color: white;
+            /* Ensure the iframe has a white background */
         }
 
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff6b6b;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 0.75rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0e68c" width="1200" height="600"/><path fill="%23daa520" d="M0 300 Q 300 200 600 300 T 1200 300 V 600 H 0 Z"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
+        .products-section {
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 8rem 2rem;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
+        .products-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #667eea;
+            color: #6a7aff;
+            margin-bottom: 2rem;
         }
 
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .product-description {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            padding: 0.8rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .add-to-cart:hover {
-            background: #5568d3;
-        }
-
-        /* Categories */
-        .categories {
+        /* Boutons de catégories */
+        .category-buttons {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 3rem;
             flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
         .category-btn {
-            padding: 0.8rem 1.5rem;
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            border-radius: 25px;
+            padding: 0.7rem 1.5rem;
+            border: 2px solid #6a7aff;
+            border-radius: 50px;
+            background: transparent;
+            color: #6a7aff;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .category-btn:hover, .category-btn.active {
-            background: #667eea;
+        .category-btn:hover {
+            background: #6a7aff;
             color: white;
         }
 
-        /* Footer */
-        footer {
-            background: #2d3748;
+        .category-btn.active {
+            background: #6a7aff;
             color: white;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
         }
 
-        .footer-content {
+        /* Grille de produits */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
         }
 
-        .footer-section h3 {
+        .product-card {
+            background: linear-gradient(135deg, #6a7aff, #8a6aff);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
             margin-bottom: 1rem;
-            color: #667eea;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: #cbd5e0;
-            text-decoration: none;
-            line-height: 2;
-        }
-
-        .footer-section a:hover {
+        .product-card h3 {
             color: white;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
         }
 
-        /* Modal Panier */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
+        .product-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
         }
 
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
+        .product-card {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .close {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-total {
-            margin-top: 1.5rem;
-            text-align: right;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: #48bb78;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: none;
-            z-index: 3000;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
+        .product-card.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <div class="logo">🧵 AfriTissus</div>
-            <nav>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#produits">Produits</a></li>
-                    <li><a href="#apropos">À Propos</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="cart-icon" onclick="toggleCart()">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
-    </header>
+    <section class="products-section">
+        <h2>Nos Produits</h2>
 
-    <!-- Hero Section -->
-    <section class="hero" id="accueil">
-        <h1>Découvrez nos Tissus Africains</h1>
-        <p>Bazins, Wax, Coupons de qualité supérieure</p>
-        <a href="#produits" class="btn">Voir la Collection</a>
-    </section>
-
-    <!-- Products Section -->
-    <section class="container" id="produits">
-        <h2 class="section-title">Nos Produits</h2>
-        
-        <div class="categories">
-            <button class="category-btn active" onclick="filterProducts('tous')">Tous</button>
-            <button class="category-btn" onclick="filterProducts('bazin')">Bazin</button>
-            <button class="category-btn" onclick="filterProducts('wax')">Wax</button>
-            <button class="category-btn" onclick="filterProducts('coupon')">Coupons</button>
-            <button class="category-btn" onclick="filterProducts('dentelle')">Dentelle</button>
+        <!-- Boutons de catégories -->
+        <div class="category-buttons">
+            <button class="category-btn active" data-category="all">Tous</button>
+            <button class="category-btn" data-category="bazin">Bazin</button>
+            <button class="category-btn" data-category="wax">Wax</button>
+            <button class="category-btn" data-category="coupons">Coupons</button>
+            <button class="category-btn" data-category="dentelle">Dentelle</button>
         </div>
 
-        <div class="products-grid" id="productsGrid"></div>
-    </section>
+        <!-- Grille de produits -->
+        <div class="products-grid">
+            <!-- Produit 1 -->
+            <div class="product-card wax">
+                <img src="/tissus/wax.jpg" alt="Tissu Wax">
+                <h3>Wax Royal</h3>
+                <p>8.000 Fcfa</p>
+            </div>
 
-    <!-- About Section -->
-    <section class="container" id="apropos">
-        <h2 class="section-title">À Propos de Nous</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;">
-            AfriTissus est votre destination privilégiée pour l'achat de tissus africains authentiques. Nous proposons une large gamme de bazins richement brodés, de wax colorés, de coupons de qualité et de dentelles élégantes. Chaque pièce est soigneusement sélectionnée pour sa qualité et son authenticité. Notre mission est de vous offrir les plus beaux tissus pour vos créations vestimentaires et décoratives.
-        </p>
-    </section>
+            <!-- Produit 2 -->
+            <div class="product-card bazin">
+                <img src="/tissus/bazin.jpg" alt="Tissu Bazin">
+                <h3>Bazin Luxe</h3>
+                <p>9.500 Fcfa</p>
+            </div>
 
-    <!-- Contact Section -->
-    <section class="container" id="contact">
-        <h2 class="section-title">Contactez-Nous</h2>
-        <p style="text-align: center; font-size: 1.1rem;">
-            📞 Téléphone: +228 XX XX XX XX<br>
-            📧 Email: contact@afritissus.com<br>
-            📍 Adresse: Lomé, Togo
-        </p>
-    </section>
+            <!-- Produit 3 -->
+            <div class="product-card dentelle">
+                <img src="/tissus/dentelle.jpg" alt="Dentelle">
+                <h3>Dentelle Parisienne</h3>
+                <p>12.000 Fcfa</p>
+            </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>AfriTissus</h3>
-                <p>Votre boutique de tissus africains de qualité</p>
+            <!-- Produit 4 -->
+            <div class="product-card coupons">
+                <img src="/tissus/coupons.jpg" alt="Coupons">
+                <h3>Coupons Colorés</h3>
+                <p>5.000 Fcfa</p>
             </div>
-            <div class="footer-section">
-                <h3>Liens Rapides</h3>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#produits">Produits</a></li>
-                    <li><a href="#apropos">À Propos</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+
+            <!-- Produit 5 -->
+            <div class="product-card wax">
+                <img src="/tissus/wax2.jpg" alt="Wax Bleu">
+                <h3>Wax Bleu Nuit</h3>
+                <p>7.500 Fcfa</p>
             </div>
-            <div class="footer-section">
-                <h3>Catégories</h3>
-                <ul>
-                    <li><a href="#">Bazin</a></li>
-                    <li><a href="#">Wax</a></li>
-                    <li><a href="#">Coupons</a></li>
-                    <li><a href="#">Dentelle</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Suivez-Nous</h3>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">WhatsApp</a></li>
-                </ul>
-            </div>
+
+            <!-- Ajoute autant de produits que tu veux -->
         </div>
-        <p style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #4a5568;">
-            © 2025 AfriTissus. Tous droits réservés.
-        </p>
-    </footer>
-
-    <!-- Modal Panier -->
-    <div class="modal" id="cartModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Mon Panier</h2>
-                <span class="close" onclick="toggleCart()">&times;</span>
-            </div>
-            <div id="cartItems"></div>
-            <div class="cart-total">
-                Total: <span id="totalPrice">0</span> FCFA
-            </div>
-            <button class="btn" style="width: 100%; margin-top: 1rem;">Commander</button>
-        </div>
-    </div>
-
-    <!-- Notification -->
-    <div class="notification" id="notification">Produit ajouté au panier!</div>
+    </section>
 
     <script>
-        // Données produits
-        const products = [
-            { id: 1, name: "Bazin Riche Brodé Or", category: "bazin", price: 45000, description: "Bazin de qualité supérieure avec broderie dorée" },
-            { id: 2, name: "Bazin Damassé Violet", category: "bazin", price: 38000, description: "Motifs damassés élégants" },
-            { id: 3, name: "Wax Hollandais Bleu", category: "wax", price: 12000, description: "Authentique wax hollandais aux motifs traditionnels" },
-            { id: 4, name: "Wax Super Rose", category: "wax", price: 15000, description: "Wax coloré aux motifs éclatants" },
-            { id: 5, name: "Coupon Bazin 5 yards", category: "coupon", price: 25000, description: "Coupon prêt à coudre, 5 yards" },
-            { id: 6, name: "Coupon Wax 6 yards", category: "coupon", price: 18000, description: "Coupon complet pour un ensemble" },
-            { id: 7, name: "Dentelle Guipure Blanche", category: "dentelle", price: 22000, description: "Dentelle délicate pour cérémonies" },
-            { id: 8, name: "Dentelle Brodée Dorée", category: "dentelle", price: 28000, description: "Dentelle luxueuse avec finitions dorées" },
-            { id: 9, name: "Bazin Riche Turquoise", category: "bazin", price: 42000, description: "Couleur vibrante, qualité premium" },
-            { id: 10, name: "Wax Fancy Rouge", category: "wax", price: 13500, description: "Motifs géométriques modernes" },
-            { id: 11, name: "Coupon Dentelle 3 yards", category: "coupon", price: 20000, description: "Parfait pour robe de soirée" },
-            { id: 12, name: "Bazin Shadda Blanc", category: "bazin", price: 35000, description: "Élégant pour cérémonies traditionnelles" }
-        ];
+        document.addEventListener('DOMContentLoaded', function () {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
 
-        let cart = [];
-        let currentFilter = 'tous';
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Retirer la classe "active" de tous les boutons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Ajouter "active" au bouton cliqué
+                    button.classList.add('active');
 
-        // Afficher les produits
-        function displayProducts(filter = 'tous') {
-            const grid = document.getElementById('productsGrid');
-            const filtered = filter === 'tous' ? products : products.filter(p => p.category === filter);
-            
-            grid.innerHTML = filtered.map(product => `
-                <div class="product-card" data-category="${product.category}">
-                    <div class="product-image">${getProductEmoji(product.category)}</div>
-                    <div class="product-info">
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-description">${product.description}</p>
-                        <div class="product-price">${product.price.toLocaleString()} FCFA</div>
-                        <button class="add-to-cart" onclick="addToCart(${product.id})">
-                            Ajouter au Panier
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
+                    const category = button.dataset.category;
 
-        function getProductEmoji(category) {
-            const emojis = {
-                'bazin': '👗',
-                'wax': '🎨',
-                'coupon': '📦',
-                'dentelle': '🌸'
-            };
-            return emojis[category] || '🧵';
-        }
-
-        // Filtrer produits
-        function filterProducts(category) {
-            currentFilter = category;
-            displayProducts(category);
-            
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
+                    // Filtrer les produits
+                    productCards.forEach(card => {
+                        if (category === 'all') {
+                            card.style.display = 'block'; // Afficher tous
+                        } else {
+                            // Si le produit a la classe de la catégorie → afficher, sinon cacher
+                            if (card.classList.contains(category)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
             });
-            event.target.classList.add('active');
-        }
+        });
+    </script>
 
-        // Ajouter au panier
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existing = cart.find(item => item.id === productId);
-            
-            if (existing) {
-                existing.quantity++;
+
+
+    <script>
+        if (category === 'all') {
+            card.classList.remove('hidden');
+        } else {
+            if (card.classList.contains(category)) {
+                card.classList.remove('hidden');
             } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-            
-            updateCartCount();
-            showNotification();
-        }
-
-        // Mettre à jour compteur panier
-        function updateCartCount() {
-            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').textContent = count;
-        }
-
-        // Afficher/masquer panier
-        function toggleCart() {
-            const modal = document.getElementById('cartModal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-            updateCartDisplay();
-        }
-
-        // Afficher contenu panier
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cartItems');
-            const totalPrice = document.getElementById('totalPrice');
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="text-align: center; color: #666;">Votre panier est vide</p>';
-                totalPrice.textContent = '0';
-                return;
-            }
-            
-            cartItems.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <div>
-                        <strong>${item.name}</strong><br>
-                        <small>${item.price.toLocaleString()} FCFA × ${item.quantity}</small>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <button onclick="changeQuantity(${item.id}, -1)" style="padding: 0.3rem 0.6rem; cursor: pointer;">-</button>
-                        <span>${item.quantity}</span>
-                        <button onclick="changeQuantity(${item.id}, 1)" style="padding: 0.3rem 0.6rem; cursor: pointer;">+</button>
-                        <button onclick="removeFromCart(${item.id})" style="padding: 0.3rem 0.6rem; cursor: pointer; color: red;">🗑️</button>
-                    </div>
-                </div>
-            `).join('');
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            totalPrice.textContent = total.toLocaleString();
-        }
-
-        // Changer quantité
-        function changeQuantity(productId, change) {
-            const item = cart.find(i => i.id === productId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    removeFromCart(productId);
-                } else {
-                    updateCartCount();
-                    updateCartDisplay();
-                }
+                card.classList.add('hidden');
             }
         }
 
-        // Retirer du panier
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartCount();
-            updateCartDisplay();
-        }
 
-        // Notification
-        function showNotification() {
-            const notif = document.getElementById('notification');
-            notif.style.display = 'block';
-            setTimeout(() => {
-                notif.style.display = 'none';
-            }, 2000);
-        }
-
-        // Initialisation
-        displayProducts();
     </script>
 </body>
+
 </html>
